@@ -14,10 +14,9 @@ export default class Upside_world extends Phaser.Scene {
 
         //Images Preloaders
 		this.load.image('hero', 'assets/hero.png')
-		this.load.image('monster','assets/Monstres&Ennemis/monster.png')
+		this.load.image('monster','assets/Ennemis/Ennemis.png')
 
 		this.load.image('border1','assets/BordureForest.png')
-		this.load.image('warp','assets/WarpToDream.png')
 
         this.load.image('Tileset', 'assets/TilesetVillage.png')
 
@@ -74,9 +73,6 @@ export default class Upside_world extends Phaser.Scene {
 		this.forestborder = this.physics.add.staticGroup();
 		this.forestborder.create(1152,16,'border1').setDepth(0);
 
-		this.dreamborder = this.physics.add.staticGroup();
-		this.dreamborder.create(127,832,'warp')
-
 		this.moneys = this.physics.add.group();
         this.sword = this.physics.add.group();
 
@@ -84,7 +80,6 @@ export default class Upside_world extends Phaser.Scene {
 		//Colliders
 
 		this.physics.add.collider(this.player, this.forestborder, this.warpingPlayerToForest, null, this);
-		this.physics.add.collider(this.player, this.dreamborder, this.warpingPlayerToDream, null, this);
 
         this.physics.add.collider(this.player, Background);
         
@@ -212,9 +207,6 @@ export default class Upside_world extends Phaser.Scene {
 
 	warpingPlayerToForest(){
 		this.scene.start('forest', { health:this.life})
-	}
-	warpingPlayerToDream(){
-		this.scene.start('downside_world' , {attack:this.attack , health:this.life})
 	}
 
 	attaquer(player) {
